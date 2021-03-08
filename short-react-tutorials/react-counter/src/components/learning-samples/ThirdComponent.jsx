@@ -9,3 +9,4 @@ function ThirdComponent(){
   );
 }
 
+export default ThirdComponent;
