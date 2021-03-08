@@ -11,6 +11,19 @@ class App extends Component {
       <div className="App">
           My Hello World!
           
+          <LearningComponents></LearningComponents>
+          
+      </div>
+    );
+  }
+}
+
+class LearningComponents extends Component {
+  render() {
+    return (
+      <div className="LearningComponents">
+          My Hello World!
+          
           <FirstComponent></FirstComponent>
           <SecondComponent></SecondComponent>
           <ThirdComponent></ThirdComponent>
@@ -19,8 +32,6 @@ class App extends Component {
     );
   }
 }
-
-
 
 
 export default App;
