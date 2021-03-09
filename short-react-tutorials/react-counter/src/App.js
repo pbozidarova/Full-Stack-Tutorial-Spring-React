@@ -9,7 +9,7 @@ class App extends Component {
       <div className="App">
           My Hello World!
       
-          <Counter></Counter>
+          <Counter/>
           
       </div>
     );

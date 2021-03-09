@@ -1,37 +1,59 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import CounterButton from './CounterButton'
 import './Counter.css'
 
-//Function Component
+
 class Counter extends Component {
 
-    //Define the initial state in constructor!
-    //state => counter 0
-    
     constructor(){
         super(); //Error 1!!!
         this.state = {
-            counter : 0
+            counter : 0,
         }
+
         this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
+        this.reset = this.reset.bind(this);
     }
 
     render() {
-    return (
-        <div className="counter">
-            <button onClick={this.increment}>+1</button>
-            <span className="count">{this.state.counter}</span>
-        </div>
-      );
-  }
+        return (
+          <div className="counter">
+              <CounterButton by={1} incrementMethod={this.increment} decrementMethod={this.decrement}></CounterButton>
+              <CounterButton by={5} incrementMethod={this.increment} decrementMethod={this.decrement}></CounterButton>
+              <CounterButton by={10} incrementMethod={this.increment} decrementMethod={this.decrement}></CounterButton>
 
-  increment(){ //Update state
-    // console.log('increment');
-    // this.state.counter++;
-    this.setState({
-        counter: this.state.counter + 1
-    })
-  }
+              <span className="count">{this.state.counter}</span>
+              <div>
+                <button className="reset" onClick={this.reset}>Reset</button>
+              </div>
+          </div>
+        );
+    }
+
+    reset(){
+        this.setState({counter: 0});
+    }
+
+    increment(by){ 
+
+        // console.log(`increment from parent - ${by}`);
+        this.setState(
+            (prevState) => {
+               return {counter: prevState.counter + by}
+            }
+        )
+    }
+    
+    decrement(by){ 
+        this.setState(
+            (prevState) => {
+               return {counter: prevState.counter - by}
+            }
+        )
+    }
     
 }
+
 
 export default Counter;
