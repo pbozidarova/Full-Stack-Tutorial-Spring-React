@@ -13,8 +13,9 @@ class AuthenticationService {
 
     isUserLoggedIn(){
         return sessionStorage.getItem('authenticatedUser');
-
     }
+
+ 
 
 }
 

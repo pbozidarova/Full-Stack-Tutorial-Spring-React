@@ -1,18 +1,28 @@
 import React, {Component} from 'react'
-import { Redirect, Route } from 'react-router'
+import TodoDataService from '../../api/todo/TodoDataService.js'
 import AuthenticationService from './AuthenticationService.js'
-
 class ListTodosComponent extends Component{
 
     constructor(props){
         super(props)
         this.state = {
             todos: [
-                {id: 1, description: 'Learn to Dance', done: false, targerDate: new Date()},
-                {id: 2, description: 'Learn React', done: false, targerDate: new Date()},
-                {id: 3, description: 'Become Expert', done: false, targerDate: new Date()}
+                // {id: 1, description: 'Learn to Dance', done: false, targerDate: new Date()},
+                // {id: 2, description: 'Learn React', done: false, targerDate: new Date()},
+                // {id: 3, description: 'Become Expert', done: false, targerDate: new Date()}
             ]
         }
+    }
+
+    componentDidMount(){
+        let username = AuthenticationService.isUserLoggedIn();
+        TodoDataService.retrieveAllTodos(username)
+            .then(
+                response => {
+                    // console.log(response);
+                    this.setState({todos : response.data});
+                }
+            );
     }
 
     render(){
@@ -36,7 +46,7 @@ class ListTodosComponent extends Component{
                                     todo =>
                                         <tr key={todo.id}>
                                             <td>{todo.description}</td>
-                                            <td>{todo.targerDate.toString()}</td>
+                                            <td>{todo.targetDate.toString()}</td>
                                             <td>{todo.done.toString()}</td>
                                         </tr>
                             )

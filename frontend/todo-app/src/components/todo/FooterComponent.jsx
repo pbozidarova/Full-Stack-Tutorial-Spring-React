@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import { Redirect, Route } from 'react-router'
-import AuthenticationService from './AuthenticationService.js'
 
 class FooterComponent extends Component {
 

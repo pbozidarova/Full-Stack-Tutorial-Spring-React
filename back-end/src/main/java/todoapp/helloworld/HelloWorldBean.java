@@ -1,4 +1,4 @@
-package todoapp.web;
+package todoapp.helloworld;
 
 public class HelloWorldBean {
 

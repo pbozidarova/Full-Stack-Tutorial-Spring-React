@@ -1,6 +1,4 @@
-import React, {Component} from 'react'
-import { Redirect, Route } from 'react-router'
-import AuthenticationService from './AuthenticationService.js'
+import React from 'react'
 
 
 function ErrorComponent() {
