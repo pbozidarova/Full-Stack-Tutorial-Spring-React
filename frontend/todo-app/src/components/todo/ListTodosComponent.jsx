@@ -4,17 +4,27 @@ import AuthenticationService from './AuthenticationService.js'
 class ListTodosComponent extends Component{
 
     constructor(props){
+        console.log('constructor');
         super(props)
         this.state = {
-            todos: [
-                // {id: 1, description: 'Learn to Dance', done: false, targerDate: new Date()},
-                // {id: 2, description: 'Learn React', done: false, targerDate: new Date()},
-                // {id: 3, description: 'Become Expert', done: false, targerDate: new Date()}
-            ]
+            todos: [],
+            message: null
         }
+
+        this.deleteTodoClicked = this.deleteTodoClicked.bind(this);
+        this.refreshTodos = this.refreshTodos.bind(this);
+    }
+    componentWillMount(){
+        console.log('unmount');
     }
 
     componentDidMount(){
+        console.log('componentDidMount');
+        this.refreshTodos();
+        console.log(this.state);
+    }
+
+    refreshTodos(){
         let username = AuthenticationService.isUserLoggedIn();
         TodoDataService.retrieveAllTodos(username)
             .then(
@@ -25,10 +35,30 @@ class ListTodosComponent extends Component{
             );
     }
 
+    deleteTodoClicked(id){
+        let username = AuthenticationService.isUserLoggedIn();
+        // console.log(id + ' ' + username);
+        TodoDataService.deleteTodo(username, id)
+            .then(
+                response => {
+                    this.setState({message : `Delete of todo ${id} Successful!`})
+                    this.refreshTodos()
+                }
+            )
+    }
+
+
+    
+    updateTodoClicked(id){
+        let username = AuthenticationService.isUserLoggedIn();
+        this.props.history.push(`/todos/${id}`)
+    }
+
     render(){
         return ( 
             <div>
                 <h1>List Todo</h1>
+                {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
                 <div className="container">
                     <table className="table">
                         <thead>
@@ -37,7 +67,8 @@ class ListTodosComponent extends Component{
                                 <th>description</th>
                                 <th>Target Date</th>
                                 <th>Is Completed</th>
-                                
+                                <th>Update</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,8 +79,10 @@ class ListTodosComponent extends Component{
                                             <td>{todo.description}</td>
                                             <td>{todo.targetDate.toString()}</td>
                                             <td>{todo.done.toString()}</td>
+                                            <td><button className="btn btn-success" onClick={() => this.updateTodoClicked(todo.id)}>Update</button></td>
+                                            <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td>
                                         </tr>
-                            )
+                                )
                             }
                         </tbody>
                     </table>

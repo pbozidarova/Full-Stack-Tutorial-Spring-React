@@ -1,6 +1,7 @@
 package todoapp.todo;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Todo {
     private long id;
@@ -75,5 +76,18 @@ public class Todo {
         sb.append(", isDone=").append(isDone);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Todo)) return false;
+        Todo todo = (Todo) o;
+        return id == todo.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
