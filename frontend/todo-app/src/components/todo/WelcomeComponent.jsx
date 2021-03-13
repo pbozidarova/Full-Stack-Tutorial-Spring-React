@@ -3,6 +3,7 @@ import {  Link } from 'react-router-dom'
 import HelloWorldService from '../../api/todo/HelloWorldService.js'
 
 class WelcomeComponent extends Component{
+
     constructor(props){
         super(props)
         this.retriveWelcomeMessage = this.retriveWelcomeMessage.bind(this);
@@ -56,7 +57,19 @@ class WelcomeComponent extends Component{
 
     handleError(error){
         // console.log(error.response.data.message);
-        this.setState({welcomeMessage: error.response.data.message});
+        let errorMsg = '';
+
+        if(error.message){
+            errorMsg += error.message;
+        }
+
+        if(error.response && error.response.data){
+            errorMsg += error.response.data.message;
+
+        }
+        
+        this.setState({welcomeMessage: errorMsg});
+
     }
 }
 

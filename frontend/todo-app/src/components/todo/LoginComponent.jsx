@@ -41,20 +41,34 @@ class LoginComponent extends Component {
 
     loginClicked(){
         //in28min, dummy
-        if(this.state.username === 'in28minutes' && this.state.password === 'dummy'){
-            AuthenticationService.registerSuccessfullLogin(this.state.username, this.state.password)
-            this.props.history.push(`/welcome/${this.state.username}`)
-            // this.setState({
-            //         showSuccessMsg:true, 
-            //         hasLoginFailed:false
-            //     })
-        }else{
-            console.log('Fail');
-            this.setState({
-                showSuccessMsg:false, 
-                hasLoginFailed:true
+        // if(this.state.username === 'in28minutes' && this.state.password === 'dummy'){        
+        //     AuthenticationService.registerSuccessfullLogin(this.state.username, this.state.password)
+        //     this.props.history.push(`/welcome/${this.state.username}`)
+        
+        //     // this.setState({
+        //     //         showSuccessMsg:true, 
+        //     //         hasLoginFailed:false
+        //     //     })
+        // }else{
+        //     console.log('Fail');
+        //     this.setState({
+        //         showSuccessMsg:false, 
+        //         hasLoginFailed:true
+        //     })
+        // }
+
+        AuthenticationService
+            .executeBasicAuthenticationService(this.state.username, this.state.password)
+            .then(() => {
+                    AuthenticationService.registerSuccessfullLogin(this.state.username, this.state.password)
+                    this.props.history.push(`/welcome/${this.state.username}`)        
+            }).catch(() => {
+                console.log('Fail');
+                this.setState({
+                    showSuccessMsg:false, 
+                    hasLoginFailed:true
+                })
             })
-        }
         
     }
 

@@ -1,10 +1,10 @@
 package todoapp.helloworld;
 
-public class HelloWorldBean {
+public class AuthenticationBean {
 
     private String message;
 
-    public HelloWorldBean(String message) {
+    public AuthenticationBean(String message) {
         this.message = message;
     }
 
@@ -12,7 +12,7 @@ public class HelloWorldBean {
         return message;
     }
 
-    public HelloWorldBean setMessage(String message) {
+    public AuthenticationBean setMessage(String message) {
         this.message = message;
         return this;
     }
