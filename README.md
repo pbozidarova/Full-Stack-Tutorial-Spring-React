@@ -15,3 +15,5 @@ This is my first application where the frontend is written in React.
 - Java;
 - Spring Boot;
 - JWT to secure the connection with the frontend.
+
+<img src='https://udemy-certificate.s3.amazonaws.com/image/UC-9bf21f3c-7838-414c-8e87-9f049506f17c.jpg?v=1615751327000' width=300px>
