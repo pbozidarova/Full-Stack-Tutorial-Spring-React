@@ -19,7 +19,7 @@ class TodoDataService {
 
     updateTodo(name, id, todo){
         // console.log('executed service');
-        return axios.put(`${JPA_API_URL}/users/${name}/todos/${id}`, id, todo);
+        return axios.put(`${JPA_API_URL}/users/${name}/todos/${id}`, todo);
     }
 
     createTodo(name, todo){

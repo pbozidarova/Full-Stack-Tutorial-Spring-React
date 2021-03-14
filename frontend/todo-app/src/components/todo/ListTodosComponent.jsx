@@ -56,9 +56,8 @@ class ListTodosComponent extends Component{
         this.props.history.push(`/todos/${id}`)
     }
 
-    addTodoClicked(id){
+    addTodoClicked(){
         // let username = Authenti cationService.isUserLoggedIn();
-        console.log('create ' + id);
         this.props.history.push(`/todos/-1`)
     }   
 
