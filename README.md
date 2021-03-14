@@ -5,13 +5,13 @@ The application illustrates simple functionality of login, listing, updating, de
 
 This is my first application where the frontend is written in React.
 
-## Frontend used technologies and Libraries
+## Frontend used technologies and libraries
 - JavaScript for the API, Authentication;
 - React - to define the components and switch between them;
 - Axios - used for addressing requests in the backend;
-- Fromik - it is used to enable the validation of a form
+- Fromik - it is used to enable the validation of a form.
 
-## Backend used technologies
-- Java
-- Spring Boot
-- JWT to secure the connection with the frontend
+## Backend used technologies and libraries
+- Java;
+- Spring Boot;
+- JWT to secure the connection with the frontend.
